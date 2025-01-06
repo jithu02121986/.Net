@@ -1,7 +1,9 @@
 ﻿class CommandLineArgsEx
 {
-    static void Main(string[] userNames)
+    static void Main(string[] userNames1)
+       
     {
+        string[] userNames = { "Jitendra","Medha" };
         Console.WriteLine($"The Size of User Names {userNames.Length}");
         //for Loop
 

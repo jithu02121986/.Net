@@ -32,8 +32,11 @@
                 {
                     Console.WriteLine(x);
                 }
+
                 ReverseArray(_inputArray);
+
                 Console.WriteLine("Reversed Array");
+
                 foreach(string x in _inputArray)
                 {
                     Console.WriteLine(x);

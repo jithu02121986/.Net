@@ -1,0 +1,113 @@
+﻿@{
+	ViewBag.ChildTitle = "Register";
+
+}
+<h2>Register</h2>
+
+<form id="registerForm" >
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" id="firstName" class="form-control" required>
+
+
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" id="lastName" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" required oninput="validateInput()">
+        <span id="error-message" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">ConfirmPassword</label>
+        <input type="password" id="Re_password" class="form-control" required oninput="validateInputpwd()">
+        <span id="error-message-1" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">ACC_Opening_Amount</label>
+        <input type="number" id="amount" class="form-control" required oninput="validateInputAmount()">
+        <span id="error-message-2" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+    <p id="registerMessage" class="mt-2 text-success"></p>
+</form>
+
+<!-- jQuery & AJAX for Registration -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+<script>
+   function validateInput() {
+         let inputField = document.getElementById("password");
+        let errorMessage = document.getElementById("error-message");
+        let regex = /^[0-9!#$%^&*(),.?":{}|<>]*$/; // Allow only numbers & special characters
+
+        if (!regex.test(inputField.value)) {
+            errorMessage.textContent = "Only numbers and special characters are allowed.";
+            inputField.style.borderColor = "red";
+        } else {
+            errorMessage.textContent = "";
+            inputField.style.borderColor = "";
+        }
+    }
+     document.getElementById("registerForm").addEventListener("submit", function (event) {
+         let inputField = document.getElementById("password");
+        let regex = /^[0-9!#$%^&*(),.?":{}|<>]*$/;
+        
+        if (!regex.test(inputField.value) || inputField.value === "") {
+            event.preventDefault(); // Stop form submission
+            document.getElementById("error-message").textContent = "Invalid input. Only numbers and special characters allowed.";
+            inputField.style.borderColor = "red";
+        }
+    });
+
+    function validateInputpwd()
+    {
+          let inputField = document.getElementById("password");
+          let repwd = document.getElementById("Re_password");
+            let errorMessage_1 = document.getElementById("error-message-1");
+
+          if(inputField.value != repwd.value)
+          {
+               //event.preventDefault();
+                 document.getElementById("error-message-1").textContent = "Invalid input,It shold be  match to a paswword ";
+                  repwd.style.borderColor = "red";
+
+           }
+            else 
+           {
+             errorMessage_1.textContent = "";
+              repwd.style.borderColor = "";
+           }
+    }
+
+     function validateInputAmount()
+     {
+             let amount_1 = document.getElementById("amount");
+               let errorMessage_2 = document.getElementById("error-message-2");
+          // let repwd = document.getElementById("Re_password");
+
+           if(amount_1.value <=1000)
+           {
+                //event.preventDefault();
+                  document.getElementById("error-message-2").textContent = "Invalid input,minimum balance is required i.e.. Rs.1000.00 ";
+                   repwd.style.borderColor = "red";
+
+            }
+            else 
+            {
+              errorMessage_2.textContent = "";
+               repwd.style.borderColor = "";
+            }
+     }
+
+</script>
